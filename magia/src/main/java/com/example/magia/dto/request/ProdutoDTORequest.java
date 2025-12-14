@@ -1,4 +1,4 @@
-package com.example.magia.dto;
+package com.example.magia.dto.request;
 
 import com.example.magia.model.Produto;
 import lombok.Data;
@@ -18,6 +18,8 @@ public class ProdutoDTORequest {
     public ProdutoDTORequest(Produto produto) {
         BeanUtils.copyProperties(produto, this);
     }
+
+
 
     public ProdutoDTORequest() {}
 }

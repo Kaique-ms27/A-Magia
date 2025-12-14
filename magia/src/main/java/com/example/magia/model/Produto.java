@@ -1,10 +1,12 @@
 package com.example.magia.model;
 
+import com.example.magia.dto.request.ProdutoDTORequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 @Data
 @Entity
@@ -33,14 +35,22 @@ public class Produto {
     @Column(name = "ativacao")
     private boolean ativacao;
 
+    public Produto() {}
 
-    public void setQuantidadeAtual(int quantidadeAtual) {
-        if (quantidadeMinima < 0) {
-            System.out.println("Quantidade inválida");
-        }
-        this.quantidadeMinima = quantidadeAtual;
+    public Produto(ProdutoDTORequest produtoDTORequest) {
+        BeanUtils.copyProperties(produtoDTORequest, this);
     }
 
+    public Produto(String nome, String descricao, int categoria,
+                   int  quantidadeAtual, int quantidadeMinima,
+                   boolean ativacao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.quantidadeAtual = quantidadeAtual;
+        this.quantidadeMinima = quantidadeMinima;
+        this.ativacao = ativacao;
+    }
 
     public String toStrig() {
         return "id_produto: " + id + ",/n" +
