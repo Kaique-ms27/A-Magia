@@ -4,9 +4,11 @@ import com.example.magia.dto.request.ProdutoDTORequest;
 import com.example.magia.dto.response.ProdutoDTOResponse;
 import com.example.magia.model.Produto;
 import com.example.magia.repository.ProdutoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
