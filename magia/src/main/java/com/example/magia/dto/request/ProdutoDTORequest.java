@@ -12,7 +12,7 @@ public class ProdutoDTORequest {
     private String descricao;
     private int categoria;
     private int quantidadeAtual;
-    private int quantidadeMinima = 10;
+    private int quantidadeMinima;
     private boolean ativacao = false;
 
     public ProdutoDTORequest(Produto produto) {

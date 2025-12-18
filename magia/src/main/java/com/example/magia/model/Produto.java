@@ -52,7 +52,8 @@ public class Produto {
         this.ativacao = ativacao;
     }
 
-    public String toStrig() {
+    @Override
+    public String toString() {
         return "id_produto: " + id + ",/n" +
                 "nome: " + nome + ",/n" +
                 "descriao: " + descricao + ",/n" +
