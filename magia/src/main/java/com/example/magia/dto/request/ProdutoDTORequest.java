@@ -16,7 +16,7 @@ public class ProdutoDTORequest {
     private boolean ativacao = false;
 
     public ProdutoDTORequest(Produto produto) {
-        BeanUtils.copyProperties(produto, this);
+        BeanUtFils.copyProperties(produto, this);
     }
 
 

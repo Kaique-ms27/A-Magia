@@ -38,6 +38,7 @@ public class ProdutoService {
         response.setQuantidadeAtual(salvo.getQuantidadeAtual());
         response.setQuantidadeMinima(salvo.getQuantidadeMinima());
         response.setAtivacao(salvo.isAtivacao());
+        response.setCategoria(salvo.getCategoria());
 
         return response;
 
