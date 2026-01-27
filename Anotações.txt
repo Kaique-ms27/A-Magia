@@ -1,3 +1,0 @@
-Anotações:
-
-- Para fazer uma ligação entre tabelas (Relacionamento), não é possível colocar apenas um @Column como anotação, é necessário mostrar o tipo de relacionamento. Exemplo em model/Estoque.java
