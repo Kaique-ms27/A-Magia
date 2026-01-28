@@ -1,0 +1,4 @@
+Etapas Realizadas:
+
+- Criação da Entidade PRODUTO;
+

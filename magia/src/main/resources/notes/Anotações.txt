@@ -1,0 +1,8 @@
+Anotações:
+
+- Para fazer uma ligação entre tabelas (Relacionamento), não é possível
+ colocar apenas um @Column como anotação, é necessário mostrar o tipo de
+ relacionamento. Exemplo em model/Estoque.java
+
+- Crio um construtor para inserir sem acesso e um construtor para adm.
+ Assim eu posso manter a opção de criação de duas maneiras.

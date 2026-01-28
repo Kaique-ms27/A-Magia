@@ -1,0 +1,4 @@
+Etapas em Processo:
+
+- Criação de Entidade ESTOQUE;
+- Corrigir o salvamento do objeto e personalizar as entradas que o usuário oferece;

@@ -1,0 +1,191 @@
+🧠 VISÃO GERAL DO SISTEMA
+
+📌 Objetivo:
+Controlar produtos, entradas e saídas de estoque, garantindo consistência, rastreabilidade e segurança.
+
+📌 Usuário final:
+Dono do negócio
+Funcionários
+
+📌 Formato:
+API REST
+Consumida via Postman
+
+🧩 ENTIDADES PRINCIPAIS
+🔹 Produto
+- id
+- nome
+- descricao
+- categoria
+- quantidadeAtual
+- quantidadeMinima
+- ativo
+
+🔹 Movimentação de Estoque
+- id
+- produto
+- tipo (ENTRADA | SAIDA)
+- quantidade
+- data
+- usuario
+- motivo
+
+🔹 Categoria
+- id
+- nome
+
+🔹 Usuário
+- id
+- nome
+- email
+- senha
+- role (ADMIN | FUNCIONARIO)
+
+⚙️ FUNCIONALIDADES (ENDPOINTS)
+1️⃣ Produtos
+
+Criar produto
+Editar produto
+Ativar / desativar produto
+Listar produtos (com filtros)
+Buscar por ID
+
+📌 Regras:
+
+Produto inativo não pode ter movimentação
+Nome do produto não pode ser vazio
+Quantidade inicial ≥ 0
+
+2️⃣ Categorias
+
+Criar categoria
+Listar categorias
+Remover (se não houver produto associado)
+
+3️⃣ Entrada de Estoque
+
+📌 Exemplo:
+POST /estoque/entrada
+
+Regras:
+✔ Quantidade > 0
+✔ Produto ativo
+✔ Registrar movimentação
+✔ Atualizar quantidade do produto
+
+📌 Nunca altere estoque direto, sempre via movimentação.
+4️⃣ Saída de Estoque
+
+📌 Exemplo:
+POST /estoque/saida
+
+Regras críticas:
+❌ Não permitir estoque negativo
+✔ Quantidade > 0
+✔ Produto ativo
+✔ Registrar movimentação
+
+5️⃣ Histórico de Movimentações
+Listar por produto
+Listar por período
+Listar por tipo (ENTRADA / SAIDA)
+
+📌 Importante:
+Tudo que acontece no estoque deve estar aqui (auditoria).
+
+6️⃣ Alerta de Estoque Baixo
+
+📌 Quando:
+
+quantidadeAtual <= quantidadeMinima
+
+Pode ser:
+Endpoint que retorna produtos em alerta
+Log
+Evento (mais avançado)
+
+🧠 REGRAS DE NEGÓCIO IMPORTANTES
+🚫 Estoque negativo
+Nunca permitir que a saída deixe o estoque abaixo de zero.
+
+🔐 Controle por permissão
+
+ADMIN: tudo
+FUNCIONARIO: entrada e saída
+
+🔄 Transação
+
+Entrada e saída precisam ser atômicas:
+Ou grava movimentação e transação
+Ou nada acontece
+
+📌 Use @Transactional
+
+🕒 Data automática
+Data da movimentação gerada no servidor
+
+Nunca confiar no client
+
+🗄️ MODELAGEM SIMPLES (RELACIONAL)
+produto (1) ----- (N) movimentacao_estoque
+categoria (1) --- (N) produto
+usuario (1) ----- (N) movimentacao_estoque
+
+🧱 ESTRUTURA DE PACOTES (SUGESTÃO)
+controller
+ ├── ProdutoController
+ ├── EstoqueController
+ ├── CategoriaController
+
+service
+ ├── ProdutoService
+ ├── EstoqueService
+
+repository
+ ├── ProdutoRepository
+ ├── MovimentacaoRepository
+
+domain
+ ├── Produto
+ ├── Categoria
+ ├── MovimentacaoEstoque
+ ├── Usuario
+
+dto
+ ├── ProdutoRequest
+ ├── EstoqueMovimentacaoRequest
+
+security
+exception
+
+🧪 TESTES QUE VALEM MUITO
+
+Não permitir saída maior que estoque
+
+Não permitir movimentar produto inativo
+
+Registrar movimentação corretamente
+
+Verificar alerta de estoque mínimo
+
+🚀 EVOLUÇÕES FUTURAS (DIFERENCIAL)
+
+Lote e validade (alimentos)
+
+Relatórios mensais
+
+Exportação CSV
+
+Webhook de alerta
+
+Cache para consultas
+
+🎯 PRÓXIMO PASSO IDEAL
+
+Sugestão de ordem:
+1️⃣ Modelar entidades
+2️⃣ Criar CRUD de produto
+3️⃣ Criar entrada de estoque
+4️⃣ Criar saída de estoque
+5️⃣ Histórico
+6️⃣ Segurança
