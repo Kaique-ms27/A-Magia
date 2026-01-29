@@ -90,7 +90,7 @@ public class ProductService {
             Restante dos atributos sendo salvos através do DtoRequest.
             The remaining attributes are being saved via DtoRequest.
          */
-        product.setMinimumQuantity(request.getMinimumQunatity());
+        product.setMinimumQuantity(request.getMinimumQuantity());
         product.setProductStatus(request.isProductStatus());
         product.setProductDescription(request.getProductDescription());
         product.setProductCategory(category);
