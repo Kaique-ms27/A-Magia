@@ -6,9 +6,10 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "InventoryMoviment")
 @Getter
 @Setter
+@Entity
+@Table(name = "InventoryMoviment")
 public class InventoryMoviment {
 
     @Id

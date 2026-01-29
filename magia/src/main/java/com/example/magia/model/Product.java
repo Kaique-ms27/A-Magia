@@ -1,15 +1,14 @@
 package com.example.magia.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import com.example.magia.dto.resquest.ProductDtoRequest;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name = "Product")
 @Getter
 @Setter
+@Entity
+@Table(name = "Product")
 public class Product {
 
     @Id
@@ -22,6 +21,7 @@ public class Product {
     @Column(name = "product_description")
     private String productDescription;
 
+    @ManyToOne
     @JoinColumn(name = "product_category")
     private ProductCategory productCategory;
 
@@ -35,6 +35,8 @@ public class Product {
     private boolean productStatus;
 
     public Product () {}
+
+    public Product (ProductDtoRequest request) {}
 
     public Product(String productId, String productName,
                    String productDescription, ProductCategory productCategory,

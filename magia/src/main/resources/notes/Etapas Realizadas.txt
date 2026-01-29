@@ -1,4 +1,6 @@
 Etapas Realizadas:
 
-- Criação da Entidade PRODUTO;
+- Creation of the entity Product;
+- Creation of the entity Inventory Moviment;
+- Creation of the entity User;
 
