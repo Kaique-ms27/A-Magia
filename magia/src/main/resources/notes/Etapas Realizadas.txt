@@ -3,4 +3,7 @@ Etapas Realizadas:
 - Creation of the entity Product;
 - Creation of the entity Inventory Moviment;
 - Creation of the entity User;
+- Creation of the ProductCategory;
+
+- Implementation of the Product and ProductCategory architecture.
 
