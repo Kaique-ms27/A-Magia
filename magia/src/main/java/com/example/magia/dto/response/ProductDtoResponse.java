@@ -21,7 +21,7 @@ public class ProductDtoResponse {
         this.minimumQunatity = model.getMinimumQuantity();
         this.productStatus = model.isProductStatus();
 
-        this.category = model.getProductCategory().getCategoryId();
+        this.category = model.getCategory().getCategoryId();
     }
 
 }

@@ -2,8 +2,8 @@ package com.example.magia.service;
 
 import com.example.magia.dto.response.ProductDtoResponse;
 import com.example.magia.dto.resquest.ProductDtoRequest;
+import com.example.magia.model.Category;
 import com.example.magia.model.Product;
-import com.example.magia.model.ProductCategory;
 import com.example.magia.repository.CategoryRepository;
 import com.example.magia.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
@@ -54,7 +54,7 @@ public class ProductService {
             Searches for the category ID in the database;
             if it does not exist, returns "category not found".
          */
-        ProductCategory category = categoryRepository.findById(request
+        Category category = categoryRepository.findById(request
                 .getProductCategory())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
@@ -93,7 +93,7 @@ public class ProductService {
         product.setMinimumQuantity(request.getMinimumQuantity());
         product.setProductStatus(request.isProductStatus());
         product.setProductDescription(request.getProductDescription());
-        product.setProductCategory(category);
+        product.setCategory(category);
 
         /*
             Salva o produto.

@@ -23,7 +23,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "product_category")
-    private ProductCategory productCategory;
+    private Category category;
 
     @Column (name = "current_quantity")
     private int currentQuantity;
@@ -39,13 +39,13 @@ public class Product {
     public Product (ProductDtoRequest request) {}
 
     public Product(String productId, String productName,
-                   String productDescription, ProductCategory productCategory,
+                   String productDescription, Category category,
                    int currentQuantity, int minimumQuantity,
                    boolean productStatus) {
         this.productId = productId;
         this.productName = productName;
         this.productDescription = productDescription;
-        this.productCategory = productCategory;
+        this.category = category;
         this.currentQuantity = currentQuantity;
         this.minimumQuantity = minimumQuantity;
         this.productStatus = productStatus;

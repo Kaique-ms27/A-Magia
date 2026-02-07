@@ -102,7 +102,7 @@ Request Body:
 {
     "productName": "String",
     "productDescription": "String",
-    "productCategory": int,
+    "category": int,
     "currentQuantity": int,
     "minimumQuantity": int,
     "productStatus": boolean

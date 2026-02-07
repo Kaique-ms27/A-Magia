@@ -2,7 +2,7 @@ package com.example.magia.service;
 
 import com.example.magia.dto.response.CategoryDtoResponse;
 import com.example.magia.dto.resquest.CategoryDtoRequest;
-import com.example.magia.model.ProductCategory;
+import com.example.magia.model.Category;
 import com.example.magia.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class CategoryService {
 
     public CategoryDtoResponse saveCategory (CategoryDtoRequest request) {
 
-        ProductCategory category = new ProductCategory();
+        Category category = new Category();
         category.setCategoryName(request.getCategoryName());
 
         repository.save(category);

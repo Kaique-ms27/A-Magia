@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Product_Category")
-public class ProductCategory {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_category")
@@ -17,10 +17,10 @@ public class ProductCategory {
     @Column(name = "name_category")
     private String categoryName;
 
-    public ProductCategory() {
+    public Category() {
     }
 
-    public ProductCategory(Long categoryId, String categoryName) {
+    public Category(Long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }

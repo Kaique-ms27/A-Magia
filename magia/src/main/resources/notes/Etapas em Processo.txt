@@ -1,4 +1,4 @@
 Etapas em Processo:
 
-- Criação de Entidade ESTOQUE;
-- Corrigir o salvamento do objeto e personalizar as entradas que o usuário oferece;
+- Criar demais métodos das classes Product e Category (get/ put/ delete);
+- Criar métodos das demais classes;
