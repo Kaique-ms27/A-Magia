@@ -1,10 +1,13 @@
 package com.example.magia.service;
 
 import com.example.magia.dto.response.CategoryDtoResponse;
+import com.example.magia.dto.response.ProductDtoResponse;
 import com.example.magia.dto.resquest.CategoryDtoRequest;
 import com.example.magia.model.Category;
 import com.example.magia.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryService {
@@ -23,5 +26,10 @@ public class CategoryService {
         repository.save(category);
 
         return new CategoryDtoResponse(category);
+    }
+
+    public List<CategoryDtoResponse> findAll() {
+        List<Category> categoryList = repository.findAll();
+        return CategoryDtoResponse.toList(categoryList);
     }
 }

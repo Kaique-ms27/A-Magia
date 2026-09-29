@@ -4,7 +4,10 @@ package com.example.magia.controller;
 import com.example.magia.dto.response.CategoryDtoResponse;
 import com.example.magia.dto.resquest.CategoryDtoRequest;
 import com.example.magia.service.CategoryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -19,5 +22,10 @@ public class CategoryController {
     @PostMapping
     public CategoryDtoResponse saveCategory(@RequestBody CategoryDtoRequest request) {
         return service.saveCategory(request);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoryDtoResponse>> listCategory() {
+        return ResponseEntity.ok(service.findAll());
     }
 }
