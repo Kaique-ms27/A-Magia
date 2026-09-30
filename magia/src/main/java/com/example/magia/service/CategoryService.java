@@ -32,4 +32,15 @@ public class CategoryService {
         List<Category> categoryList = repository.findAll();
         return CategoryDtoResponse.toList(categoryList);
     }
+
+    public List<CategoryDtoResponse> deleteCategory(Long id) {
+        Category category = repository.findById(id)
+                .orElseThrow( () -> new RuntimeException("Categoria não encontrada"));
+
+        repository.delete(category);
+
+        List<Category> updatedCategory = repository.findAll();
+
+        return CategoryDtoResponse.toList(updatedCategory);
+    }
 }

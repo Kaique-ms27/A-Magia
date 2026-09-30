@@ -114,4 +114,16 @@ public class ProductService {
         List<Product> productList = productRepository.findAll();
         return ProductDtoResponse.toList(productList);
     }
+
+    public List<ProductDtoResponse> deleteProduct(String id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow( ()-> new RuntimeException("Produto não encontrado"));
+
+        productRepository.delete(product);
+
+
+        List<Product> updatedProducts = productRepository.findAll();
+        return ProductDtoResponse.toList(updatedProducts);
+
+    }
 }

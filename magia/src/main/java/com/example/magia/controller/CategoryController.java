@@ -2,6 +2,7 @@ package com.example.magia.controller;
 
 
 import com.example.magia.dto.response.CategoryDtoResponse;
+import com.example.magia.dto.response.ProductDtoResponse;
 import com.example.magia.dto.resquest.CategoryDtoRequest;
 import com.example.magia.service.CategoryService;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,11 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<List<CategoryDtoResponse>> listCategory() {
         return ResponseEntity.ok(service.findAll());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<List<CategoryDtoResponse>> deleteCategory(@PathVariable Long id) {
+        ResponseEntity.ok("Excluído com Sucesso");
+        return ResponseEntity.ok(service.deleteCategory(id));
     }
 }

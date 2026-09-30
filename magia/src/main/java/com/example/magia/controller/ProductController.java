@@ -26,4 +26,10 @@ public class ProductController {
     public ResponseEntity<List<ProductDtoResponse>> listProduct() {
         return ResponseEntity.ok(productService.findAll());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<List<ProductDtoResponse>> deleteProduct(@PathVariable String id) {
+        ResponseEntity.ok("Excluído com Sucesso");
+        return ResponseEntity.ok(productService.deleteProduct(id));
+    }
 }
