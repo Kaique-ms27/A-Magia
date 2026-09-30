@@ -1,6 +1,7 @@
 package com.example.magia.service;
 
 import com.example.magia.dto.response.ProductDtoResponse;
+import com.example.magia.dto.resquest.CategoryDtoRequest;
 import com.example.magia.dto.resquest.ProductDtoRequest;
 import com.example.magia.model.Category;
 import com.example.magia.model.Product;
@@ -92,7 +93,7 @@ public class ProductService {
             The remaining attributes are being saved via DtoRequest.
          */
         product.setMinimumQuantity(request.getMinimumQuantity());
-        product.setProductStatus(request.isProductStatus());
+        product.setProductStatus(request.getProductStatus());
         product.setProductDescription(request.getProductDescription());
         product.setCategory(category);
 
@@ -110,11 +111,63 @@ public class ProductService {
 
     }
 
+    // Read
     public List<ProductDtoResponse> findAll(){
         List<Product> productList = productRepository.findAll();
         return ProductDtoResponse.toList(productList);
     }
 
+    //Update
+    // Update
+    public ProductDtoResponse updatedProduct(String id, ProductDtoRequest request) {
+
+        Product updatedProduct = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+
+        if (request.getProductName() != null) {
+            updatedProduct.setProductName(request.getProductName());
+        }
+
+        if (request.getCurrentQuantity() != null) {
+            if (request.getCurrentQuantity() <= 0) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "The quantity entered cannot be less than or equal to 0."
+                );
+            }
+
+            updatedProduct.setCurrentQuantity(request.getCurrentQuantity());
+        }
+
+        if (request.getMinimumQuantity() != null) {
+            updatedProduct.setMinimumQuantity(request.getMinimumQuantity());
+        }
+
+        if (request.getProductStatus() != null) {
+            updatedProduct.setProductStatus(request.getProductStatus());
+        }
+
+        if (request.getProductDescription() != null) {
+            updatedProduct.setProductDescription(request.getProductDescription());
+        }
+
+        if (request.getProductCategory() != null) {
+
+            Category category = categoryRepository.findById(
+                    request.getProductCategory()
+            ).orElseThrow(() ->
+                    new RuntimeException("Category not found")
+            );
+
+            updatedProduct.setCategory(category);
+        }
+
+        productRepository.save(updatedProduct);
+
+        return new ProductDtoResponse(updatedProduct);
+    }
+
+    //Delete
     public List<ProductDtoResponse> deleteProduct(String id) {
         Product product = productRepository.findById(id)
                 .orElseThrow( ()-> new RuntimeException("Produto não encontrado"));

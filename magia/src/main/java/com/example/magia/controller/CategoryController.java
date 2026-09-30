@@ -20,16 +20,26 @@ public class CategoryController {
         this.service = service;
     }
 
+    //Create
     @PostMapping
     public CategoryDtoResponse saveCategory(@RequestBody CategoryDtoRequest request) {
         return service.saveCategory(request);
     }
 
+    // Read
     @GetMapping
     public ResponseEntity<List<CategoryDtoResponse>> listCategory() {
         return ResponseEntity.ok(service.findAll());
     }
 
+
+    //Update
+    @PatchMapping("/{id}")
+    public CategoryDtoResponse updateCategory(@PathVariable long id, @RequestBody CategoryDtoRequest request) {
+        return service.updatedCategory(id, request);
+    }
+
+    // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<List<CategoryDtoResponse>> deleteCategory(@PathVariable Long id) {
         ResponseEntity.ok("Excluído com Sucesso");

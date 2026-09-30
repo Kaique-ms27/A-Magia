@@ -1,6 +1,8 @@
 package com.example.magia.controller;
 
+import com.example.magia.dto.response.CategoryDtoResponse;
 import com.example.magia.dto.response.ProductDtoResponse;
+import com.example.magia.dto.resquest.CategoryDtoRequest;
 import com.example.magia.dto.resquest.ProductDtoRequest;
 import com.example.magia.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,12 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductDtoResponse>> listProduct() {
         return ResponseEntity.ok(productService.findAll());
+    }
+
+    //Update
+    @PatchMapping("/{id}")
+    public ProductDtoResponse updateProduct(@PathVariable String id, @RequestBody ProductDtoRequest request) {
+        return productService.updatedProduct(id, request);
     }
 
     @DeleteMapping("/{id}")

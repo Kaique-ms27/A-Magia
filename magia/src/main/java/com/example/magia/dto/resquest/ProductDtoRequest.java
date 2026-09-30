@@ -7,8 +7,8 @@ public class ProductDtoRequest {
     private String productName;
     private String productDescription;
     private Long productCategory;
-    private int currentQuantity;
-    private int minimumQuantity;
-    private boolean productStatus;
+    private Integer currentQuantity;
+    private Integer minimumQuantity;
+    private Boolean productStatus;
 
 }
